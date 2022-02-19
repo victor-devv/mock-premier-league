@@ -14,11 +14,11 @@ import FixtureController from '../controllers/fixture.controller';
 
 
 export class FixturesRoutes extends CommonRoutesConfig {
-    constructor(app: Express) {
+    constructor(app: express.Application) {
         super(app, 'FixtureRoutes', 'fixture', express.Router());
     }
 
-    configureRoutes() {
+    configureRoutes(): express.Application {
         const prefix: any = process.env.ROUTE_PREFIX
 
         // Add Fixture

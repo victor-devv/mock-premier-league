@@ -66,17 +66,8 @@ class JwtMiddleware {
                 if (authorization[0] !== 'Bearer') {
                     return res.status(401).json(
                         {
-                            "error": {
-                                "errors": [
-                                    {
-                                        "domain": "global",
-                                        "reason": "required",
-                                        "message": "Bearer Token Required",
-                                        "locationType": "header",
-                                        "location": "Authorization"
-                                    }
-                                ],
-                                "code": 401,
+                            "status": "error",
+                            "data": {
                                 "message": "Bearer Token Required"
                             }
                         }
@@ -91,15 +82,8 @@ class JwtMiddleware {
             } catch (err) {
                 return res.status(403).json(
                     {
-                        "error": {
-                            "errors": [
-                                {
-                                    "domain": "global",
-                                    "reason": "forbidden",
-                                    "message": "Forbidden"
-                                }
-                            ],
-                            "code": 403,
+                        "status": "error",
+                        "data": {
                             "message": "Forbidden"
                         }
                     }
@@ -108,17 +92,8 @@ class JwtMiddleware {
         } else {
             return res.status(401).json(
                 {
-                    "error": {
-                        "errors": [
-                            {
-                                "domain": "global",
-                                "reason": "required",
-                                "message": "Authorization Header Required",
-                                "locationType": "header",
-                                "location": "Authorization"
-                            }
-                        ],
-                        "code": 401,
+                    "status": "error",
+                    "data": {
                         "message": "Authorization Header Required"
                     }
                 }

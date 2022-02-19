@@ -39,7 +39,7 @@ import { AuthRoutes } from './routes/auth.routes';
 
 import errorHandler from './middlewares/error-handler.middleware';
 
-const app: express.Express = express();
+const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 
 app.use(express.json());
@@ -57,42 +57,38 @@ routes.push(new UserRoutes(app));
 routes.push(new FixturesRoutes(app));
 routes.push(new AuthRoutes(app));
 
+if (process.env.NODE_ENV !== 'test') {
 
-const redisClient = redis.createClient({ url: 'redis://redis:6379' })
+  const redisClient = redis.createClient({ url: 'redis://redis:6379' })
 
-redisClient.connect()
+  redisClient.connect()
 
-redisClient.on('connect', () => {
-  logger.info('Redis client connected');
-});
+  redisClient.on('connect', () => {
+    logger.info('Redis client connected');
+  });
 
-redisClient.on('error', (err: any) => {
-  logger.info(err);
-});
+  redisClient.on('error', (err: any) => {
+    logger.info(err);
+  });
 
-app.use(
-  session({
-    secret: 'secret',
-    store: new redisStore({ client: redisClient }),
-    resave: false,
-    saveUninitialized: false
-  })
-);
+  app.use(
+    session({
+      secret: 'secret',
+      store: new redisStore({ client: redisClient }),
+      resave: false,
+      saveUninitialized: false
+    })
+  );
+}
+
 app.use(responseTime());
 
 //handle 404
 app.use((req: Request, res: Response) => {
   res.status(404).json(
     {
-      "error": {
-        "errors": [
-          {
-            "domain": "global",
-            "reason": "notFound",
-            "message": "Resource Not Found"
-          }
-        ],
-        "code": 404,
+      "status" : "error",
+      "data": {
         "message": "Resource Not Found"
       }
     }
@@ -102,9 +98,9 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 8080
 
-if (process.env.NODE_ENV !== 'test') {
+// if (process.env.NODE_ENV !== 'test') {
   
-  server.listen(port, () => {
+  export default server.listen(port, () => {
     logger.info(`App is running at http://localhost:${port}`)
 
     routes.forEach((route: CommonRoutesConfig) => {
@@ -112,6 +108,6 @@ if (process.env.NODE_ENV !== 'test') {
     });
   });
 
-}
+// }
 
-module.exports = app;
+ server;

@@ -12,11 +12,11 @@ import TeamMiddleware from '../middlewares/team.middleware';
 import TeamController from '../controllers/team.controller';
 
 export class TeamRoutes extends CommonRoutesConfig {
-    constructor(app: Express) {
+    constructor(app: express.Application) {
         super(app, 'TeamRoutes', 'team', express.Router());
     }
 
-    configureRoutes() {
+    configureRoutes(): express.Application {
         const prefix: any = process.env.ROUTE_PREFIX
 
         // Add team

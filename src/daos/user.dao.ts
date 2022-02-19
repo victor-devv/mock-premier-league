@@ -27,9 +27,9 @@ export class UserDAO {
             .select('_id email permissionFlags password')
             .exec();
     }
-
+ 
     async getUserById(userId: string) {
-        return User.findOne({ _id: userId }).populate('User').exec();
+        return User.findOne({ _id: userId }).exec();
     }
 
     async getUsers(limit = 25, page = 0) {

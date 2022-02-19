@@ -17,11 +17,11 @@ import { PermissionFlag } from '../enums/permissionflag.enum';
 // import PerishablesController from '../controllers/perishables.controller'
 
 export class UserRoutes extends CommonRoutesConfig {
-    constructor(app: Express) {
+    constructor(app: express.Application) {
         super(app, 'UserRoutes', 'users', express.Router());
     }
 
-    configureRoutes() {
+    configureRoutes(): express.Application {
 
         //Get all users
         this.router
@@ -54,7 +54,11 @@ export class UserRoutes extends CommonRoutesConfig {
             .all(
                 UserMiddleware.validateUserExists,
                 jwtMiddleware.validJWTNeeded,
-                CommonMiddleware.onlySameUserOrAdminCanDoThisAction
+                CommonMiddleware.permissionFlagRequired(
+                    PermissionFlag.ADMIN_PERMISSION
+                ),
+
+                // CommonMiddleware.onlySameUserOrAdminCanDoThisAction
             )
             .get(UserController.getUserById)
             .delete(UserController.removeUser);

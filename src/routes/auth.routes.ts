@@ -11,11 +11,11 @@ import debug from 'debug';
 const log: debug.IDebugger = debug('app:auth-routes');
 
 export class AuthRoutes extends CommonRoutesConfig {
-    constructor(app: Express) {
+    constructor(app: express.Application) {
         super(app, 'AuthRoutes', 'auth', express.Router());
     }
 
-    configureRoutes() {
+    configureRoutes(): express.Application {
         this.router.post(`/login`, [
             body('email').isEmail(),
             body('password').isString(),

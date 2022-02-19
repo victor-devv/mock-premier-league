@@ -8,15 +8,13 @@ const log: debug.IDebugger = debug('app:user-middleware');
 
 class UserMiddleware {
 
-    constructor() {
-    }
-
     async validateRequiredUserBodyFields(req: express.Request, res: express.Response, next: express.NextFunction) {
         if (req.body && req.body.email && req.body.password) {
             next();
         } else {
-            res.status(400).send({
-                error: `Missing required fields email and password`,
+            res.status(400).json({
+                "status": `failed`,
+                "message": `Missing required fields email and password`,
             });
         }
     }
@@ -26,9 +24,9 @@ class UserMiddleware {
         if (req.body && req.body.quantity) {
             next();
         } else {
-            res.status(400).send({
-                status: `Failed`,
-                error: `Required Field Missing`,
+            res.status(400).json({
+                "status": `failed`,
+                "message": `Required Field Missing`,
             });
         }
 
@@ -50,7 +48,10 @@ class UserMiddleware {
         if (res.locals.user._id === req.params.userId) {
             next();
         } else {
-            res.status(400).send({ error: `Invalid email` });
+            res.status(400).json({
+                "status": 'failed',
+                "message": `Invalid email`,
+            });
         }
     }
 
@@ -60,8 +61,9 @@ class UserMiddleware {
             res.locals.user = user;
             next();
         } else {
-            res.status(404).send({
-                error: `User ${req.params.userId} not found`,
+            res.status(404).json({
+                "status": 'failed',
+                "message": `User ${req.params.userId} not found`,
             });
         }
     }

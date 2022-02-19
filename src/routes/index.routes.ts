@@ -2,11 +2,11 @@ import express, {Express, Request, Response} from 'express'
 import {CommonRoutesConfig} from './common.routes';
 
 export class IndexRoutes extends CommonRoutesConfig {
-    constructor(app: Express) {
+    constructor(app: express.Application) {
         super(app, 'IndexRoutes', '', express.Router());
     }
 
-    configureRoutes() {
+    configureRoutes(): express.Application {
         //without express.Router
         this.app.route(`/`)
             .get((req: Request, res: Response) => {

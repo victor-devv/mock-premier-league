@@ -37,17 +37,10 @@ class CommonMiddleware {
                 if (userPermissionFlags & requiredPermissionFlag) {
                     next();
                 } else {
-                    res.status(403).json(
+                    return res.status(403).json(
                         {
-                            "error": {
-                                "errors": [
-                                    {
-                                        "domain": "global",
-                                        "reason": "forbidden",
-                                        "message": "Forbidden"
-                                    }
-                                ],
-                                "code": 403,
+                            "status": "error",
+                            "data": {
                                 "message": "Forbidden"
                             }
                         }
@@ -61,17 +54,20 @@ class CommonMiddleware {
  
     async onlySameUserOrAdminCanDoThisAction(req: express.Request, res: express.Response, next: express.NextFunction) {
         const userPermissionFlags = parseInt(res.locals.jwt.permissionFlags);
-        if (
-            req.params &&
-            req.params.userId &&
-            req.params.userId === res.locals.jwt.userId
-        ) {
+        if (req.params && req.params.userId && req.params.userId === res.locals.jwt.userId) {
             return next();
         } else {
             if (userPermissionFlags & PermissionFlag.ADMIN_PERMISSION) {
                 return next();
             } else {
-                return res.status(403).send();
+                return res.status(403).json(
+                    {
+                        "status": "error",
+                        "data": {
+                            "message": "Forbidden"
+                        }
+                    }
+                );
             }
         }
     }
