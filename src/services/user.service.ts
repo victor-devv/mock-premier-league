@@ -10,6 +10,10 @@ class UserService implements CRUD {
         return UserDAO.createUser(resource);
     }
 
+    async createAdmin(resource: UserSignUpDto) {
+        return UserDAO.createAdmin(resource);
+    }
+
     async read(id: string) {
         return UserDAO.getUserById(id);
     }

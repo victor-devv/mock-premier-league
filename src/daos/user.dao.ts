@@ -18,6 +18,18 @@ export class UserDAO {
         return userId;
     }
 
+    async createAdmin(payload: UserSignUpDto) {
+        const userId = shortid.generate();
+        //const userId = shortid.generate();
+        const user: any = new User({
+            _id: userId,
+            ...payload,
+            permissionFlags: 2,
+        });
+        await user.save();
+        return userId;
+    }
+
     async getUserByEmail(email: string) {
         return User.findOne({ email: email }).exec();
     }

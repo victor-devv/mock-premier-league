@@ -22,6 +22,7 @@ export class UserRoutes extends CommonRoutesConfig {
     }
 
     configureRoutes(): express.Application {
+        const prefix: any = process.env.ROUTE_PREFIX
 
         //Get all users
         this.router
@@ -33,6 +34,19 @@ export class UserRoutes extends CommonRoutesConfig {
                 ),
                 UserController.listUsers
             )
+
+        this.app
+            .route(`${prefix}admin/signup`)
+            .post(
+                body('email').isEmail(),
+                body('password').isLength({ min: 5 }).withMessage('Must include password (5+ characters)'),
+                body('firstName').isString(),
+                body('lastName').isString(),
+                CommonMiddleware.verifyBodyFieldsErrors,
+                UserMiddleware.validateSameEmailDoesntExist,
+                UserController.createAdmin
+            )
+
 
         //Sign up
         this.router.post(`/signup`,
@@ -62,7 +76,7 @@ export class UserRoutes extends CommonRoutesConfig {
             )
             .get(UserController.getUserById)
             .delete(UserController.removeUser);
-
+ 
         this.router.put(`/:userId`, [
             UserMiddleware.validateRequiredUserBodyFields,
             UserMiddleware.validateSameEmailBelongToSameUser,
@@ -76,8 +90,6 @@ export class UserRoutes extends CommonRoutesConfig {
             UserController.patch,
         ]);
 
-        //const prefix = config.get<string>('routePrefix')
-        const prefix: any = process.env.ROUTE_PREFIX
         this.app.use(prefix + this.getPrefix(), this.router)
         return this.app;
     }

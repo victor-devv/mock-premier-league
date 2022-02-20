@@ -27,6 +27,8 @@ co(async () => {
                 permissionFlags: 1,
                 createdAt: moment(Date.now()).format('LLLL'),
                 updatedAt: moment(Date.now()).format('LLLL')
+
+                
             },
             {
                 _id: shortid.generate(),
@@ -41,7 +43,7 @@ co(async () => {
             {
                 _id: shortid.generate(),
                 email: 'denishennyworh@test.com',
-                password: await argon2.hash('Kazeem27$'),
+                password: await argon2.hash('dennisHdf'),
                 firstName: 'Denis',
                 lastName: 'Hennyworth',
                 permissionFlags: 1,
@@ -71,7 +73,7 @@ co(async () => {
                 _id: shortid.generate(),
                 email: 'markcumber@test.com',
                 password: await argon2.hash('cumbbjhygsdf'),
-                firstName: 'MArk',
+                firstName: 'Mark',
                 lastName: 'Cumber',
                 permissionFlags: 1,
                 createdAt: moment(Date.now()).format('LLLL'),
@@ -100,7 +102,7 @@ co(async () => {
             {
                 _id: shortid.generate(),
                 email: 'suppd@test.com',
-                password: await argon2.hash('Kazeem27$'),
+                password: await argon2.hash('sbui78uh'),
                 firstName: 'Suppd',
                 lastName: 'Alamander',
                 permissionFlags: 1,

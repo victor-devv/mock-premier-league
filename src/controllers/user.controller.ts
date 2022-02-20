@@ -29,6 +29,28 @@ class UserController {
         }
     }
 
+    async createAdmin(req: Request, res: Response, next: NextFunction) {
+        try {
+            req.body.password = await argon2.hash(req.body.password);
+
+            const result = await UserService.createAdmin(req.body);
+
+            res.status(201).json({
+                "status": 'success',
+                "message": "User sign-up successful",
+                "data": {
+                    "id": result
+                }
+            })
+
+        } catch (error) {
+            res.status(500).json({
+                "status": 'failed',
+                "message": "Error creating user",
+            })
+        }
+    }
+
     async listUsers(req: Request, res: Response, next: NextFunction) {
         try {
             const users = await UserService.list(100, 0);
