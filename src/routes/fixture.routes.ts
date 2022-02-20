@@ -98,6 +98,21 @@ export class FixturesRoutes extends CommonRoutesConfig {
                 ),
                 FixtureController.deleteFixture
             );
+        
+        //Generate fixture link
+        this.router
+            .route(`link/:fixtureId`)
+            .all(
+                jwtMiddleware.validJWTNeeded,
+                CommonMiddleware.permissionFlagRequired(
+                    PermissionFlag.ADMIN_PERMISSION
+                ),
+                FixtureMiddleware.validateFixtureExists,
+            )
+            .get(
+                FixtureController.getFixture
+            )
+
 
         this.app.use(prefix + this.getPrefix(), this.router)
         return this.app;

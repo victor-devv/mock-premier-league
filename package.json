@@ -8,7 +8,7 @@
         "start": "tsc && node --unhandled-rejections=strict build/app.js",
         "prod": "tsc && node build/app.js",
         "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-        "initdb": "ts-node tools/initdb",
+        "seed": "ts-node database/seeders/users.ts && ts-node database/seeders/teams.ts && ts-node database/seeders/fixtures.ts",
         "test": "jest --coverage --detectOpenHandles",
         "test:watch": "jest --coverage --watchAll",
         "build": "tsc",
