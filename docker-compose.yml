@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/usr/src/mock-premier-league
     depends_on:
-      - mongodb
+      - mongo
       - redis
   mongo:
     container_name: mock-premier-league-mongo
