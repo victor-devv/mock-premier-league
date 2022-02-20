@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,11 +101,23 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,31 +125,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import { CRUD } from '../interfaces/crud.interface';
+<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import { CRUD } from '../interfaces/crud.interface';
 import TeamDAO from '../daos/team.dao';
 import { CreateTeamDto, PutTeamDto, PatchTeamDto, SearchTeamsDto } from '../dtos/team.dto';
 &nbsp;
@@ -145,32 +145,32 @@ import debug from 'debug';
 const log: debug.IDebugger = debug('app:team-services');
 &nbsp;
 class TeamService implements CRUD {
-    async <span class="fstat-no" title="function not covered" >create(</span>resource: CreateTeamDto) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.createTeam(resource);</span>
+    async create(resource: CreateTeamDto) {
+        return TeamDAO.createTeam(resource);
     }
 &nbsp;
-    async <span class="fstat-no" title="function not covered" >read(</span>name: string) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.getTeam(name);</span>
+    async read(name: string) {
+        return TeamDAO.getTeam(name);
     }
 &nbsp;
-    async <span class="fstat-no" title="function not covered" >readById(</span>id: string) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.getTeamById(id);</span>
+    async readById(id: string) {
+        return TeamDAO.getTeamById(id);
     }
 &nbsp;
     async <span class="fstat-no" title="function not covered" >update(</span>id: string, resource: PatchTeamDto) {
 <span class="cstat-no" title="statement not covered" >        return TeamDAO.updateTeamById(id, resource);</span>
     }
 &nbsp;
-    async <span class="fstat-no" title="function not covered" >delete(</span>id: string) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.removeTeamById(id);</span>
+    async delete(id: string) {
+        return TeamDAO.removeTeamById(id);
     }
 &nbsp;
-    async <span class="fstat-no" title="function not covered" >list(</span>limit: number, page: number) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.getTeams();</span>
+    async list(limit: number, page: number) {
+        return TeamDAO.getTeams();
     }
 &nbsp;
-    async <span class="fstat-no" title="function not covered" >search(</span>resource: SearchTeamsDto) {
-<span class="cstat-no" title="statement not covered" >        return TeamDAO.searchTeams(resource);</span>
+    async search(resource: SearchTeamsDto) {
+        return TeamDAO.searchTeams(resource);
     }
 }
 &nbsp;
@@ -181,7 +181,7 @@ export default new TeamService();</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Feb 20 2022 00:34:35 GMT+0100 (West Africa Standard Time)
+                at Sun Feb 20 2022 02:20:35 GMT+0100 (West Africa Standard Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

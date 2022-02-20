@@ -3,15 +3,6 @@ import app from '../src/app'
 import mongoose from 'mongoose';
 
 afterAll((done) => {
-    //mongoose.connection.close();
-
-    // mongoose.connection.close((errMongo: Error) => {
-    //     if (errMongo) {
-    //         // console.error(errMongo);
-    //     }
-
-    //     done();
-    // });
     app.close(() => {
         mongoose.connection.close(done);
     });

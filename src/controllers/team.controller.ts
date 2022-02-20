@@ -120,7 +120,7 @@ class TeamController {
         try {
             await TeamService.delete(req.params.teamId);
 
-            res.status(200).json({
+            res.status(204).json({
                 "status": 'success',
                 "message": "Team deleted successfully",
             })

@@ -184,9 +184,6 @@ describe("resource /:userId", () => {
             .set({ Authorization: `Bearer ${adminAccessToken}` })
             .send();
         expect(result.status).toEqual(204);
-        expect(result.body.status).toEqual('success');
-        expect(result.body.message).toEqual('User deleted successfully')
-
     });
 
     it("should not delete a non-existent user", async () => {
